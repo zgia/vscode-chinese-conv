@@ -1,0 +1,8 @@
+**
+!package.json
+!README.md
+!CHANGELOG.md
+!LICENSE
+!images/logo.png
+!dist/**
+dist/**/*.map

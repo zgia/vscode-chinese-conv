@@ -1,0 +1,226 @@
+{
+  "name": "chinese-conv",
+  "displayName": "简繁转换 · 香港 / 台湾",
+  "description": "离线简繁转换，支持香港繁体、台湾繁体、台湾用语及大文件。",
+  "version": "0.1.1",
+  "publisher": "zgia",
+  "icon": "images/logo.png",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "OpenCC",
+    "Chinese",
+    "简繁转换",
+    "香港",
+    "台湾"
+  ],
+  "main": "./dist/extension.js",
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": {
+      "supported": "limited",
+      "description": "可转换编辑器中的文本；磁盘文件转换需要本地或远程主机文件系统。"
+    }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "chineseConv.convert",
+        "title": "转换选区或全文…",
+        "category": "简繁转换"
+      },
+      {
+        "command": "chineseConv.convertSelection",
+        "title": "转换选中文字…",
+        "category": "简繁转换",
+        "enablement": "editorHasSelection && !editorReadonly"
+      },
+      {
+        "command": "chineseConv.convertDocument",
+        "title": "转换全文…",
+        "category": "简繁转换",
+        "enablement": "!editorReadonly"
+      },
+      {
+        "command": "chineseConv.s2hk",
+        "title": "简体 → 香港繁体",
+        "category": "简繁转换"
+      },
+      {
+        "command": "chineseConv.s2tw",
+        "title": "简体 → 台湾繁体（字形）",
+        "category": "简繁转换"
+      },
+      {
+        "command": "chineseConv.s2twp",
+        "title": "简体 → 台湾繁体（含台湾用语）",
+        "category": "简繁转换"
+      },
+      {
+        "command": "chineseConv.hk2s",
+        "title": "香港繁体 → 简体",
+        "category": "简繁转换"
+      },
+      {
+        "command": "chineseConv.tw2s",
+        "title": "台湾繁体 → 简体",
+        "category": "简繁转换"
+      },
+      {
+        "command": "chineseConv.tw2sp",
+        "title": "台湾繁体 → 简体（含大陆用语）",
+        "category": "简繁转换"
+      },
+      {
+        "command": "chineseConv.convertFile",
+        "title": "转换文件简繁（另存为）…",
+        "category": "简繁转换"
+      },
+      {
+        "command": "chineseConv.selection.s2hk",
+        "title": "简体 → 香港繁体",
+        "category": "简繁转换",
+        "enablement": "editorHasSelection && !editorReadonly"
+      },
+      {
+        "command": "chineseConv.selection.s2tw",
+        "title": "简体 → 台湾繁体（字形）",
+        "category": "简繁转换",
+        "enablement": "editorHasSelection && !editorReadonly"
+      },
+      {
+        "command": "chineseConv.selection.s2twp",
+        "title": "简体 → 台湾繁体（含台湾用语）",
+        "category": "简繁转换",
+        "enablement": "editorHasSelection && !editorReadonly"
+      },
+      {
+        "command": "chineseConv.selection.hk2s",
+        "title": "香港繁体 → 简体",
+        "category": "简繁转换",
+        "enablement": "editorHasSelection && !editorReadonly"
+      },
+      {
+        "command": "chineseConv.selection.tw2s",
+        "title": "台湾繁体 → 简体",
+        "category": "简繁转换",
+        "enablement": "editorHasSelection && !editorReadonly"
+      },
+      {
+        "command": "chineseConv.selection.tw2sp",
+        "title": "台湾繁体 → 简体（含大陆用语）",
+        "category": "简繁转换",
+        "enablement": "editorHasSelection && !editorReadonly"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "chineseConv.context",
+          "when": "editorTextFocus && !editorReadonly",
+          "group": "1_modification@20"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "chineseConv.convertFile",
+          "when": "resourceScheme == file && !explorerResourceIsFolder",
+          "group": "7_modification@20"
+        }
+      ],
+      "chineseConv.context": [
+        {
+          "command": "chineseConv.selection.s2hk",
+          "group": "1_selection@1"
+        },
+        {
+          "command": "chineseConv.selection.s2tw",
+          "group": "1_selection@2"
+        },
+        {
+          "command": "chineseConv.selection.s2twp",
+          "group": "1_selection@3"
+        },
+        {
+          "command": "chineseConv.selection.hk2s",
+          "group": "1_selection@4"
+        },
+        {
+          "command": "chineseConv.selection.tw2s",
+          "group": "1_selection@5"
+        },
+        {
+          "command": "chineseConv.selection.tw2sp",
+          "group": "1_selection@6"
+        },
+        {
+          "command": "chineseConv.convertDocument",
+          "group": "2_document@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "chineseConv.selection.s2hk",
+          "when": "false"
+        },
+        {
+          "command": "chineseConv.selection.s2tw",
+          "when": "false"
+        },
+        {
+          "command": "chineseConv.selection.s2twp",
+          "when": "false"
+        },
+        {
+          "command": "chineseConv.selection.hk2s",
+          "when": "false"
+        },
+        {
+          "command": "chineseConv.selection.tw2s",
+          "when": "false"
+        },
+        {
+          "command": "chineseConv.selection.tw2sp",
+          "when": "false"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "chineseConv.context",
+        "label": "简繁转换"
+      }
+    ]
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "test": "npm run build && node --import tsx --test test/*.test.ts",
+    "benchmark": "node --import tsx scripts/benchmark.ts",
+    "vscode:prepublish": "npm run check && npm run build",
+    "package": "vsce package --allow-missing-repository",
+    "build:dev": "node scripts/build.mjs --development",
+    "test:vscode": "npm run build && node scripts/test-vscode.mjs"
+  },
+  "dependencies": {
+    "opencc-js": "1.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "20.17.9",
+    "@types/vscode": "1.85.0",
+    "esbuild": "0.25.12",
+    "tsx": "^4.23.15",
+    "typescript": "5.9.3"
+  }
+}

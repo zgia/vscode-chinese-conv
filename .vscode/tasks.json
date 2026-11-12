@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "检查类型",
+      "type": "npm",
+      "script": "check",
+      "problemMatcher": "$tsc"
+    },
+    {
+      "label": "构建插件",
+      "type": "npm",
+      "script": "build:dev",
+      "problemMatcher": [],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "开发准备",
+      "dependsOrder": "sequence",
+      "dependsOn": ["检查类型", "构建插件"],
+      "problemMatcher": []
+    }
+  ]
+}
